@@ -76,7 +76,7 @@ public class StudentRepositoryTest {
 	@Test
 	public void createWhenNameIsNullShouldThrowConstraintViolationException(){
 		thrown.expect(ConstraintViolationException.class);
-		thrown.expectMessage("O campo nome do estudante é obrigatório");
+		thrown.expectMessage("The student name field is required");
 		this.repository.save(new Student());
 	}
 	
@@ -91,7 +91,7 @@ public class StudentRepositoryTest {
 	@Test
 	public void createWhenEmailIsNotValidShouldThrowConstraintViolationException(){
 		thrown.expect(ConstraintViolationException.class);
-		thrown.expectMessage("Digite um email válido");
+		thrown.expectMessage("Enter a valid email address");
 		Student student = new Student();
 		student.setName("Hugo");
 		student.setEmail("hugogmail.com");

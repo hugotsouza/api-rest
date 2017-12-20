@@ -41,7 +41,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<>(rnfDetails, HttpStatus.NOT_FOUND);
 	}
 	
-	@Override
+	
+	@Override //for handlers presents in class ResponseEntityExceptionHandler is not need to the annotation @ExceptionHadler
 	public ResponseEntity<Object>  handleMethodArgumentNotValid(MethodArgumentNotValidException manvException,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
@@ -51,7 +52,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 		
 		ValidationErrorDetails vedDetails = ValidationErrorDetails.Builder.newBuilder()
 			.timestamp(new Date().getTime())
-			.status(HttpStatus.NOT_FOUND.value())
+			.status(HttpStatus.BAD_REQUEST.value())
 			.title("Field Validation Error")
 			.detail("Field Validation Error")
 			.developerMessager(manvException.getClass().getName())
@@ -61,7 +62,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 		
 		return new ResponseEntity<>(vedDetails, HttpStatus.BAD_REQUEST);
 	}
-		
+	/***
+	 * receives all other exception handling present in the class ResponseEntityExceptionHandler
+	 */
 	@Override
 	protected ResponseEntity<Object> handleExceptionInternal(Exception exception, Object body,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
