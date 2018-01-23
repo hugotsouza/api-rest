@@ -31,7 +31,7 @@ public class StudentEndPoint {
 		this.studentDao = studentDao;
 	}
 	
-	@GetMapping(path="protected/students")//Writing the role in the url simplifies the security setup
+	@GetMapping(path="protected/students")//Writing the authorities on url simplifies the security setup
 	public ResponseEntity<?> listAll(Pageable pageable){
 		return new ResponseEntity<>(studentDao.findAll(pageable), HttpStatus.OK);
 	}
